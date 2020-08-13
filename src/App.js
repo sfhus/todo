@@ -1,22 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Platform } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput, Dimensions, Platform, ScrollView} from 'react-native';
+import Todo from "./Todo"
 const {height, width} = Dimensions.get("window");
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text style={styles.title}>Todo</Text>
-      <View style={styles.card}>
-        <TextInput style={styles.input} placeholder={"Enter an item"} />
+export default class App extends React.Component {
+  state = {
+    newTodo: ""
+  };
+
+  handleNewTodo = (text) => {
+    this.setState({newToDo: text});
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Text style={styles.title}>Todo</Text>
+        <View style={styles.card}>
+          <TextInput 
+            style={styles.input} 
+            placeholder={"Enter an item"}
+            onChangeText={this.handleNewTodo} 
+            autoCapitalize={"sentences"}
+            autocorrect={true}
+            returnKeyType={"done"}
+          />
+          <ScrollView contentContainerStyle={styles.todos}>
+            <Todo />
+          </ScrollView>
+        </View>
       </View>
-    </View>
-  );
+    );
+  };
 }
 
 const styles = StyleSheet.create({
+  todos: {
+    alignItems: "center"
+  },
   container: {
     flex: 1,
     backgroundColor: '#0061fe',
@@ -28,6 +51,12 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     marginBottom: 25,
     color: "#fff"
+  },
+  input: {
+    padding: 20,
+    borderBottomColor: "#bbb",
+    borderBottomWidth: 1,
+    fontSize: 25
   },
   card: {
     backgroundColor: "#fff",
