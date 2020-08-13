@@ -2,6 +2,8 @@
 
 A lightweight, minimalistic, crossplatform Todo list application.
 
+Special thanks to [Nomad Coders](https://www.youtube.com/channel/UCUpJs89fSBXNolQGOYKn0YQ) for help on this project.
+
 # Setup
 
 1. Ensure you have React installed.
