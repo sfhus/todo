@@ -6,12 +6,23 @@ const {height, width} = Dimensions.get("window");
 
 export default class App extends React.Component {
   state = {
-    newTodo: ""
+    newTodo: "" /*,
+    completedCount: 0 */
   };
 
   handleNewTodo = (text) => {
     this.setState({newToDo: text});
   };
+
+  /*
+  handleUpdateCount = (completed) => {
+    if (completed) {
+      this.setState({completedCount: this.state.completedCount + 1}, () => console.log(this.state.completedCount));
+    } else {
+      this.setState({completedCount: this.state.completedCount - 1});
+    }
+  };
+  */
 
   render() {
     return (
@@ -28,7 +39,7 @@ export default class App extends React.Component {
             returnKeyType={"done"}
           />
           <ScrollView contentContainerStyle={styles.todos}>
-            <Todo />
+            <Todo text={"Hello I'm a todo"} /* handleUpdateCount={this.handleUpdateCount} */ />
           </ScrollView>
         </View>
       </View>
